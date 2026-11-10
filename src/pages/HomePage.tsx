@@ -93,11 +93,20 @@ export const HomePage: React.FC<HomePageProps> = ({
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="text-center max-w-3xl mx-auto space-y-6">
-            {/* Tagline kicker */}
-            <div className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#C9A44C]">
-              <span>Decent Web Engineering.com</span>
-              <span aria-hidden="true">·</span>
-              <span>Led by Umair Web Designer</span>
+            {/* Official Logo Insignia & Tagline kicker */}
+            <div className="inline-flex flex-col items-center gap-3">
+              <div className="p-1.5 rounded-2xl bg-[#081710]/80 border border-[#C9A44C]/40 shadow-xl backdrop-blur-xs gold-glow">
+                <img
+                  src="/assets/aistudio/file_0000000056708211a5d9289307191d62_88c53f2d.png"
+                  alt="Decent Web Engineering Official Logo Emblem"
+                  className="h-16 sm:h-20 w-auto rounded-xl object-contain shadow-md"
+                />
+              </div>
+              <div className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#C9A44C]">
+                <span>Decent Web Engineering.com</span>
+                <span aria-hidden="true">·</span>
+                <span>Led by Umair Web Designer</span>
+              </div>
             </div>
 
             {/* Main Headline */}

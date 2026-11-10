@@ -86,6 +86,19 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, brandConfig })
                   International Client Ready
                 </span>
               </div>
+
+              {/* Official Brand Emblem Card */}
+              <div className="p-3.5 rounded-2xl bg-[#081710] border border-[#C9A44C]/35 flex items-center gap-3.5 shadow-md">
+                <img
+                  src="/assets/aistudio/file_0000000056708211a5d9289307191d62_88c53f2d.png"
+                  alt="Decent Web Engineering Official Insignia"
+                  className="h-12 w-auto rounded-lg object-contain"
+                />
+                <div className="text-xs">
+                  <div className="font-bold text-white font-display text-sm">Decent Web Engineering.com</div>
+                  <div className="text-[#C9A44C] text-[11px] font-medium">Official Brand Mark & Architecture Trademark</div>
+                </div>
+              </div>
             </div>
 
             {/* Right Column: Bio & Brand Story */}

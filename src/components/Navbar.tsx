@@ -74,15 +74,17 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, brandNa
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-8">
-        {/* Zone 1: Brand Wordmark */}
+        {/* Zone 1: Brand Wordmark & Official Emblem */}
         <button
           onClick={() => handleLinkClick('home')}
           className="flex items-center gap-3 text-left group cursor-pointer focus:outline-none shrink-0"
-          aria-label="Decent Web Engineering Home"
+          aria-label="Decent Web Engineering.com Home"
         >
-          <div className="w-10 h-10 rounded-lg bg-[#102C23] dark:bg-[#102C23] border border-[#C9A44C]/30 flex items-center justify-center text-[#C9A44C] font-bold text-lg tracking-wider transition-transform duration-200 group-hover:scale-105">
-            D
-          </div>
+          <img
+            src="/assets/aistudio/file_0000000056708211a5d9289307191d62_88c53f2d.png"
+            alt="Decent Web Engineering Logo"
+            className="h-10 w-auto rounded-lg object-contain shadow-xs border border-[#C9A44C]/30 transition-transform duration-200 group-hover:scale-105"
+          />
           <span className="font-display text-lg font-bold tracking-tight text-[#17251C] dark:text-[#F8FAF7] whitespace-nowrap">
             Decent Web Engineering<span className="text-[#C9A44C]">.com</span>
           </span>

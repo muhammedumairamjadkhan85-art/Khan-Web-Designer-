@@ -23,9 +23,11 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, brandConfig, onOpenC
           {/* Brand Column (2 cols on desktop) */}
           <div className="md:col-span-2 space-y-4">
             <div className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-lg bg-[#081710] border border-[#C9A44C]/40 flex items-center justify-center text-[#C9A44C] font-bold text-lg">
-                D
-              </div>
+              <img
+                src="/assets/aistudio/file_0000000056708211a5d9289307191d62_88c53f2d.png"
+                alt="Decent Web Engineering Logo"
+                className="h-12 w-auto rounded-xl object-contain border border-[#C9A44C]/40 shadow-md bg-[#081710]"
+              />
               <span className="font-display text-xl font-bold tracking-tight text-white">
                 Decent Web Engineering<span className="text-[#C9A44C]">.com</span>
               </span>

@@ -58,10 +58,10 @@ export const PricingPage: React.FC<PricingPageProps> = ({
             <span>Decent Web Engineering</span>
           </div>
           <h1 className="font-display text-4xl sm:text-5xl font-extrabold text-[#17251C] dark:text-[#F8FAF7] leading-tight">
-            FIXED-PRICE TIERS & <span className="text-[#102C23] dark:text-[#E3C477]">CLEAR VALUE.</span>
+            WEBSITE DESIGN COST &amp; <span className="text-[#102C23] dark:text-[#E3C477]">FIXED-PRICE PACKAGES.</span>
           </h1>
           <p className="text-base sm:text-lg text-[#17251C]/80 dark:text-[#F8FAF7]/80 leading-relaxed">
-            No unexpected billing or ambiguous hourly rates. Every package is delivered with fixed pricing, clear weekly milestones, and 100% code ownership.
+            Clear custom website pricing with no unexpected hourly billing. Choose fixed-price landing page, business website, or e-commerce development packages with 100% source code ownership and SEO built in.
           </p>
         </div>
       </section>

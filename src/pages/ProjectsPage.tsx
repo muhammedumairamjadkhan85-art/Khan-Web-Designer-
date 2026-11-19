@@ -129,7 +129,8 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({
               <div className="relative rounded-2xl overflow-hidden border border-[#C9A44C]/30 bg-[#081710] shadow-lg group">
                 <img
                   src={caseStudies[activeProjectIdx].image}
-                  alt={caseStudies[activeProjectIdx].title}
+                  alt={`${caseStudies[activeProjectIdx].title} — ${caseStudies[activeProjectIdx].categoryLabel} case study by Decent Web Engineering.com`}
+                  decoding="async"
                   referrerPolicy="no-referrer"
                   className="w-full h-auto object-cover max-h-[420px] transition-transform duration-500 group-hover:scale-102"
                 />

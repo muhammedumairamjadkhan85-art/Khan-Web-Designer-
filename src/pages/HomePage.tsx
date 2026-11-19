@@ -60,25 +60,25 @@ export const HomePage: React.FC<HomePageProps> = ({
     {
       title: 'Enterprise Wealth Platform',
       category: 'Business Website',
-      image: '/src/assets/images/mockup_business_corporate_1794278507471.jpg',
+      image: '/assets/images/mockup_business_corporate_1794278507471.jpg',
       stat: '99/100 Performance Score',
     },
     {
       title: 'Haute Horlogerie Storefront',
       category: 'E-commerce',
-      image: '/src/assets/images/mockup_ecommerce_store_1794278509386.jpg',
+      image: '/assets/images/mockup_ecommerce_store_1794278509386.jpg',
       stat: 'Mobile Checkout Optimized',
     },
     {
       title: 'Automation SaaS Platform',
       category: 'High-Converting Landing',
-      image: '/src/assets/images/mockup_saas_landing_1794278509611.jpg',
+      image: '/assets/images/mockup_saas_landing_1794278509611.jpg',
       stat: 'Zero Layout Shift (CLS 0.0)',
     },
     {
       title: 'Architectural Atelier',
       category: 'Editorial Portfolio',
-      image: '/src/assets/images/mockup_creative_portfolio_1794278510187.jpg',
+      image: '/assets/images/mockup_creative_portfolio_1794278510187.jpg',
       stat: 'High-Retention Visual Flow',
     },
   ];
@@ -116,7 +116,7 @@ export const HomePage: React.FC<HomePageProps> = ({
 
             {/* Supporting Text */}
             <p className="text-base sm:text-lg text-[#17251C]/80 dark:text-[#F8FAF7]/80 leading-relaxed max-w-2xl mx-auto">
-              Transform your ideas into powerful digital experiences. We create modern, responsive, and professional websites that help businesses grow and stand out online.
+              Transform your ideas into powerful digital experiences. We deliver custom website development, responsive web design, high-converting landing pages, e-commerce stores, and technical SEO built to rank fast on Google.
             </p>
 
             {/* Two Action Buttons */}
@@ -183,7 +183,9 @@ export const HomePage: React.FC<HomePageProps> = ({
                 <div className="relative aspect-16/10 sm:aspect-16/9 bg-[#081710] overflow-hidden group">
                   <img
                     src={heroSpecimens[activeHeroTab].image}
-                    alt={heroSpecimens[activeHeroTab].title}
+                    alt={`${heroSpecimens[activeHeroTab].title} — ${heroSpecimens[activeHeroTab].category} by Umair Web Designer`}
+                    fetchPriority="high"
+                    decoding="async"
                     referrerPolicy="no-referrer"
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-102"
                   />
@@ -218,15 +220,17 @@ export const HomePage: React.FC<HomePageProps> = ({
             <div className="lg:col-span-5 space-y-4">
               <div className="relative rounded-2xl overflow-hidden border border-[#C9A44C]/30 aspect-square max-w-md mx-auto shadow-lg bg-[#081710]">
                 <img
-                  src="/src/assets/images/umair_designer_portrait_1794278507083.jpg"
-                  alt="Umair Web Designer - Founder of Decent Web Engineering"
+                  src="/assets/aistudio/Screenshot_20261012_132526_fbe3eb2c.jpg"
+                  alt="Umair Web Designer — Custom Web Developer and Founder of Decent Web Engineering.com"
+                  loading="lazy"
+                  decoding="async"
                   referrerPolicy="no-referrer"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover object-top"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#081710]/80 via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#081710]/85 via-transparent to-transparent" />
                 <div className="absolute bottom-4 left-4 right-4 text-white">
                   <div className="text-base font-bold font-display">{brandConfig.ownerName}</div>
-                  <div className="text-xs text-[#E3C477]">Founder & Lead Web Engineer</div>
+                  <div className="text-xs text-[#E3C477]">Founder &amp; Lead Web Engineer</div>
                 </div>
               </div>
             </div>
@@ -235,7 +239,7 @@ export const HomePage: React.FC<HomePageProps> = ({
             <div className="lg:col-span-7 space-y-6">
               <div className="space-y-2">
                 <span className="text-xs font-semibold uppercase tracking-wider text-[#C9A44C]">
-                  Founder & Brand Strategy
+                  Founder &amp; Brand Strategy
                 </span>
                 <h2 className="font-display text-3xl sm:text-4xl font-extrabold tracking-tight text-[#17251C] dark:text-[#F8FAF7]">
                   YOUR VISION. OUR DIGITAL EXPERTISE.
@@ -243,11 +247,11 @@ export const HomePage: React.FC<HomePageProps> = ({
               </div>
 
               <p className="text-base sm:text-lg text-[#17251C]/80 dark:text-[#F8FAF7]/80 leading-relaxed">
-                Welcome to <strong>Decent Web Engineering</strong>. Founded and directed by <strong>Umair Web Designer</strong>, our mission is to engineer digital platforms that combine world-class visual aesthetics with uncompromising technical rigor.
+                Welcome to <strong>Decent Web Engineering.com</strong>. Founded and directed by <strong>Umair Web Designer</strong>, our studio specializes in custom website development, UI/UX design, and full-stack web engineering built for speed and conversions.
               </p>
 
               <p className="text-sm sm:text-base text-[#17251C]/70 dark:text-[#F8FAF7]/70 leading-relaxed">
-                We believe your website is your single most important commercial asset. Rather than relying on rigid templates or bloated page builders, every solution is hand-crafted with clean modern code, intentional UI/UX design, and search engine optimization built directly into the foundations.
+                We believe your business website is your highest-leverage growth asset. Rather than relying on sluggish page builders or generic templates, every site is hand-coded with React, TypeScript, responsive mobile-first design, and Schema.org technical SEO baked directly into the architecture.
               </p>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
@@ -384,7 +388,9 @@ export const HomePage: React.FC<HomePageProps> = ({
               <div className="relative aspect-16/10 bg-[#081710] overflow-hidden">
                 <img
                   src={project.image}
-                  alt={project.title}
+                  alt={`${project.title} — ${project.categoryLabel} responsive website design by Decent Web Engineering.com`}
+                  loading="lazy"
+                  decoding="async"
                   referrerPolicy="no-referrer"
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />

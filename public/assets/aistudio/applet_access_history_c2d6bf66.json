@@ -1,0 +1,14 @@
+{
+  "applets": [{
+    "lastAccessTime": "2026-11-10T05:33:47.574572Z",
+    "firstAccessTime": "2026-11-10T02:41:14.310782Z",
+    "source": {
+      "sourceType": "SPANNER",
+      "spanner": {
+        "id": "0ef82ae0-c5a1-468b-9413-4eed61d8a02e"
+      }
+    },
+    "name": "Decent Web Engineering",
+    "description": "World-class web development and digital solutions by Umair Web Designer. We build your digital future with modern, responsive, high-performance websites."
+  }]
+}

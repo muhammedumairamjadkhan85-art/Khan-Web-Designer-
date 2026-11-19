@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Moon, Sun, Menu, X, ArrowUpRight, ChevronDown } from 'lucide-react';
 import { PageId } from '../types';
+import { PAGE_PATHS } from '../data/seoConfig';
 import { useTheme } from '../context/ThemeContext';
 
 interface NavbarProps {
@@ -75,29 +76,38 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, brandNa
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-8">
         {/* Zone 1: Brand Wordmark & Official Emblem */}
-        <button
-          onClick={() => handleLinkClick('home')}
+        <a
+          href={PAGE_PATHS.home}
+          onClick={(e) => {
+            e.preventDefault();
+            handleLinkClick('home');
+          }}
           className="flex items-center gap-3 text-left group cursor-pointer focus:outline-none shrink-0"
           aria-label="Decent Web Engineering.com Home"
         >
           <img
             src="/assets/aistudio/file_0000000056708211a5d9289307191d62_88c53f2d.png"
-            alt="Decent Web Engineering Logo"
+            alt="Decent Web Engineering.com Official Logo"
             className="h-10 w-auto rounded-lg object-contain shadow-xs border border-[#C9A44C]/30 transition-transform duration-200 group-hover:scale-105"
           />
           <span className="font-display text-lg font-bold tracking-tight text-[#17251C] dark:text-[#F8FAF7] whitespace-nowrap">
             Decent Web Engineering<span className="text-[#C9A44C]">.com</span>
           </span>
-        </button>
+        </a>
 
         {/* Zone 2: Navigation Links (Desktop) */}
-        <nav className="hidden md:flex items-center gap-7 text-sm font-medium">
+        <nav aria-label="Main Navigation" className="hidden md:flex items-center gap-7 text-sm font-medium">
           {primaryLinks.map((link) => {
             const isActive = currentPage === link.id;
             return (
-              <button
+              <a
                 key={link.id}
-                onClick={() => handleLinkClick(link.id)}
+                href={PAGE_PATHS[link.id]}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleLinkClick(link.id);
+                }}
+                aria-current={isActive ? 'page' : undefined}
                 className={`relative py-1 transition-colors duration-150 whitespace-nowrap shrink-0 cursor-pointer ${
                   isActive
                     ? 'text-[#102C23] dark:text-[#C9A44C] font-semibold'
@@ -108,7 +118,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, brandNa
                 {isActive && (
                   <span className="absolute bottom-0 left-0 w-full h-[2px] bg-[#C9A44C] rounded-full transition-all" />
                 )}
-              </button>
+              </a>
             );
           })}
 
@@ -138,17 +148,21 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, brandNa
                 {secondaryLinks.map((link) => {
                   const isActive = currentPage === link.id;
                   return (
-                    <button
+                    <a
                       key={link.id}
-                      onClick={() => handleLinkClick(link.id)}
-                      className={`w-full text-left px-3 py-2 rounded-xl text-xs font-medium transition-colors cursor-pointer ${
+                      href={PAGE_PATHS[link.id]}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        handleLinkClick(link.id);
+                      }}
+                      className={`block w-full text-left px-3 py-2 rounded-xl text-xs font-medium transition-colors cursor-pointer ${
                         isActive
                           ? 'bg-[#102C23]/10 dark:bg-[#183B2F] text-[#102C23] dark:text-[#C9A44C] font-semibold'
                           : 'text-[#17251C]/80 dark:text-[#F8FAF7]/80 hover:bg-[#F8FAF7] dark:hover:bg-[#081710]'
                       }`}
                     >
                       {link.label}
-                    </button>
+                    </a>
                   );
                 })}
               </div>
@@ -170,13 +184,17 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, brandNa
             )}
           </button>
 
-          <button
-            onClick={() => handleLinkClick('contact')}
+          <a
+            href={PAGE_PATHS.contact}
+            onClick={(e) => {
+              e.preventDefault();
+              handleLinkClick('contact');
+            }}
             className="hidden sm:inline-flex items-center gap-1.5 px-4 py-2 text-xs font-semibold uppercase tracking-wider rounded-lg bg-[#102C23] text-white dark:bg-[#C9A44C] dark:text-[#081710] hover:bg-[#183B2F] dark:hover:bg-[#E3C477] transition-all duration-200 cursor-pointer shadow-sm hover:shadow"
           >
             <span>Let's Talk</span>
             <ArrowUpRight className="w-3.5 h-3.5" />
-          </button>
+          </a>
 
           {/* Mobile hamburger button */}
           <button
@@ -199,17 +217,21 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, brandNa
             {primaryLinks.map((link) => {
               const isActive = currentPage === link.id;
               return (
-                <button
+                <a
                   key={link.id}
-                  onClick={() => handleLinkClick(link.id)}
-                  className={`w-full text-left px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
+                  href={PAGE_PATHS[link.id]}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleLinkClick(link.id);
+                  }}
+                  className={`block w-full text-left px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
                     isActive
                       ? 'bg-[#102C23]/10 dark:bg-[#183B2F] text-[#102C23] dark:text-[#C9A44C] font-semibold'
                       : 'text-[#17251C] dark:text-[#F8FAF7]/80 hover:bg-[#102C23]/5 dark:hover:bg-[#183B2F]/50'
                   }`}
                 >
                   {link.label}
-                </button>
+                </a>
               );
             })}
           </div>
@@ -221,29 +243,37 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, brandNa
             {secondaryLinks.map((link) => {
               const isActive = currentPage === link.id;
               return (
-                <button
+                <a
                   key={link.id}
-                  onClick={() => handleLinkClick(link.id)}
-                  className={`w-full text-left px-3 py-2 rounded-lg text-xs font-medium transition-colors ${
+                  href={PAGE_PATHS[link.id]}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleLinkClick(link.id);
+                  }}
+                  className={`block w-full text-left px-3 py-2 rounded-lg text-xs font-medium transition-colors ${
                     isActive
                       ? 'bg-[#102C23]/10 dark:bg-[#183B2F] text-[#102C23] dark:text-[#C9A44C] font-semibold'
                       : 'text-[#17251C]/75 dark:text-[#F8FAF7]/70 hover:bg-[#102C23]/5 dark:hover:bg-[#183B2F]/50'
                   }`}
                 >
                   {link.label}
-                </button>
+                </a>
               );
             })}
           </div>
 
           <div className="pt-2">
-            <button
-              onClick={() => handleLinkClick('contact')}
+            <a
+              href={PAGE_PATHS.contact}
+              onClick={(e) => {
+                e.preventDefault();
+                handleLinkClick('contact');
+              }}
               className="w-full flex items-center justify-center gap-2 py-3 rounded-lg text-sm font-semibold uppercase tracking-wider bg-[#102C23] text-white dark:bg-[#C9A44C] dark:text-[#081710]"
             >
               <span>Let's Talk</span>
               <ArrowUpRight className="w-4 h-4" />
-            </button>
+            </a>
           </div>
         </div>
       )}

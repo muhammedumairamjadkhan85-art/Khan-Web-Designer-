@@ -1,6 +1,7 @@
 import React from 'react';
 import { Mail, MessageCircle, ArrowUpRight, Github, Linkedin, Twitter, Sliders } from 'lucide-react';
 import { PageId, BrandConfig } from '../types';
+import { PAGE_PATHS } from '../data/seoConfig';
 
 interface FooterProps {
   onNavigate: (page: PageId) => void;
@@ -100,44 +101,64 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, brandConfig, onOpenC
             </h4>
             <ul className="space-y-2 text-xs sm:text-sm text-[#F8FAF7]/80">
               <li>
-                <button
-                  onClick={() => handleNav('home')}
+                <a
+                  href={PAGE_PATHS.home}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNav('home');
+                  }}
                   className="hover:text-white transition-colors cursor-pointer"
                 >
                   Home
-                </button>
+                </a>
               </li>
               <li>
-                <button
-                  onClick={() => handleNav('services')}
+                <a
+                  href={PAGE_PATHS.services}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNav('services');
+                  }}
                   className="hover:text-white transition-colors cursor-pointer"
                 >
-                  Services
-                </button>
+                  Web Development Services
+                </a>
               </li>
               <li>
-                <button
-                  onClick={() => handleNav('portfolio')}
+                <a
+                  href={PAGE_PATHS.portfolio}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNav('portfolio');
+                  }}
                   className="hover:text-white transition-colors cursor-pointer"
                 >
-                  Portfolio
-                </button>
+                  Web Design Portfolio
+                </a>
               </li>
               <li>
-                <button
-                  onClick={() => handleNav('pricing')}
+                <a
+                  href={PAGE_PATHS.pricing}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNav('pricing');
+                  }}
                   className="hover:text-white transition-colors cursor-pointer"
                 >
-                  Pricing & Tiers
-                </button>
+                  Pricing & Website Cost
+                </a>
               </li>
               <li>
-                <button
-                  onClick={() => handleNav('contact')}
+                <a
+                  href={PAGE_PATHS.contact}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNav('contact');
+                  }}
                   className="hover:text-white transition-colors cursor-pointer"
                 >
-                  Contact Us
-                </button>
+                  Contact & Free Quote
+                </a>
               </li>
             </ul>
           </div>
@@ -149,36 +170,52 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, brandConfig, onOpenC
             </h4>
             <ul className="space-y-2 text-xs sm:text-sm text-[#F8FAF7]/80">
               <li>
-                <button
-                  onClick={() => handleNav('about')}
+                <a
+                  href={PAGE_PATHS.about}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNav('about');
+                  }}
                   className="hover:text-white transition-colors cursor-pointer"
                 >
-                  About Us (Umair)
-                </button>
+                  About Umair Web Designer
+                </a>
               </li>
               <li>
-                <button
-                  onClick={() => handleNav('projects')}
+                <a
+                  href={PAGE_PATHS.projects}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNav('projects');
+                  }}
                   className="hover:text-white transition-colors cursor-pointer"
                 >
                   Projects & Case Studies
-                </button>
+                </a>
               </li>
               <li>
-                <button
-                  onClick={() => handleNav('skills')}
+                <a
+                  href={PAGE_PATHS.skills}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNav('skills');
+                  }}
                   className="hover:text-white transition-colors cursor-pointer"
                 >
-                  Our Skills & Stack
-                </button>
+                  React, TypeScript & SEO Skills
+                </a>
               </li>
               <li>
-                <button
-                  onClick={() => handleNav('testimonials')}
+                <a
+                  href={PAGE_PATHS.testimonials}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNav('testimonials');
+                  }}
                   className="hover:text-white transition-colors cursor-pointer"
                 >
                   Testimonials & Trust
-                </button>
+                </a>
               </li>
             </ul>
           </div>
@@ -190,36 +227,52 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, brandConfig, onOpenC
             </h4>
             <ul className="space-y-2 text-xs sm:text-sm text-[#F8FAF7]/80">
               <li>
-                <button
-                  onClick={() => handleNav('blog')}
+                <a
+                  href={PAGE_PATHS.blog}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNav('blog');
+                  }}
                   className="hover:text-white transition-colors cursor-pointer"
                 >
-                  Blog & Insights
-                </button>
+                  Blog & Technical SEO Notes
+                </a>
               </li>
               <li>
-                <button
-                  onClick={() => handleNav('faq')}
+                <a
+                  href={PAGE_PATHS.faq}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNav('faq');
+                  }}
                   className="hover:text-white transition-colors cursor-pointer"
                 >
                   Frequently Asked Questions
-                </button>
+                </a>
               </li>
               <li>
-                <button
-                  onClick={() => handleNav('privacy')}
+                <a
+                  href={PAGE_PATHS.privacy}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNav('privacy');
+                  }}
                   className="hover:text-white transition-colors cursor-pointer"
                 >
                   Privacy Policy
-                </button>
+                </a>
               </li>
               <li>
-                <button
-                  onClick={() => handleNav('terms')}
+                <a
+                  href={PAGE_PATHS.terms}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNav('terms');
+                  }}
                   className="hover:text-white transition-colors cursor-pointer"
                 >
                   Terms & Conditions
-                </button>
+                </a>
               </li>
             </ul>
           </div>

@@ -138,7 +138,9 @@ export const PortfolioPage: React.FC<PortfolioPageProps> = ({
                 <div className="relative aspect-16/10 bg-[#081710] overflow-hidden">
                   <img
                     src={project.image}
-                    alt={project.title}
+                    alt={`${project.title} — ${project.categoryLabel} responsive web design specimen by Umair Web Designer`}
+                    loading="lazy"
+                    decoding="async"
                     referrerPolicy="no-referrer"
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />

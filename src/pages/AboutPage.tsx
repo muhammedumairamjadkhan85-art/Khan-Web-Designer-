@@ -62,12 +62,13 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, brandConfig })
             <div className="lg:col-span-5 space-y-4">
               <div className="relative rounded-2xl overflow-hidden border-2 border-[#C9A44C]/40 aspect-square max-w-md mx-auto shadow-2xl bg-[#081710] group">
                 <img
-                  src="/src/assets/images/umair_designer_portrait_1794278507083.jpg"
-                  alt="Umair Web Designer - Founder of Decent Web Engineering"
+                  src="/assets/aistudio/Screenshot_20261012_132526_fbe3eb2c.jpg"
+                  alt="Umair Web Designer — Freelance Web Developer & Founder of Decent Web Engineering.com"
+                  decoding="async"
                   referrerPolicy="no-referrer"
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-102"
+                  className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-102"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#081710] via-transparent to-transparent opacity-80" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#081710]/85 via-transparent to-transparent" />
                 <div className="absolute bottom-5 left-5 right-5 text-white">
                   <div className="text-xl font-bold font-display">{brandConfig.ownerName}</div>
                   <div className="text-xs text-[#E3C477] font-medium tracking-wide">
@@ -116,13 +117,13 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, brandConfig })
 
               <div className="space-y-4 text-sm sm:text-base text-[#17251C]/80 dark:text-[#F8FAF7]/80 leading-relaxed">
                 <p>
-                  I am <strong>Umair</strong>, an obsessive web designer and software engineer passionate about transforming ambitious ideas into world-class digital realities. Under the banner of <strong>Decent Web Engineering</strong>, I help business owners, startups, and creative brands command authority on the web.
+                  I am <strong>Umair Web Designer</strong>, a professional web designer and React/TypeScript frontend software engineer passionate about transforming ambitious ideas into high-ranking digital realities. Under the banner of <strong>Decent Web Engineering.com</strong>, I help startups, local businesses, and global brands win customers online.
                 </p>
                 <p>
-                  My journey began with a clear observation: the internet is flooded with generic, fragile templates and slow, bloated websites that fail to convert visitors. Decent Web Engineering was built as an antidote to this—delivering custom-engineered web experiences where stunning aesthetics and rock-solid code coexist harmoniously.
+                  My journey began with a clear observation: the internet is flooded with generic, fragile templates and slow, bloated websites that fail to convert visitors or rank on Google. Decent Web Engineering.com was built as an antidote—delivering custom website development where modern UI/UX design, Core Web Vitals speed, and rock-solid code coexist harmoniously.
                 </p>
                 <p>
-                  Whether designing a high-converting landing page, architecting an e-commerce flagship, or engineering an enterprise platform, I personally oversee every detail—from initial wireframes and typographic rhythm to sub-second load times and production deployment.
+                  Whether designing a high-converting landing page, building an e-commerce store, or executing a full website redesign with technical SEO, I personally oversee every detail from wireframes to sub-second production deployment.
                 </p>
               </div>
 

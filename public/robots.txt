@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+
+Sitemap: https://decent-web-engineering-1097843396680.asia-southeast1.run.app/sitemap.xml

@@ -202,16 +202,24 @@ export const ContactPage: React.FC<ContactPageProps> = ({
           {/* Left Column: Direct Action Channels & Owner Credentials */}
           <div className="lg:col-span-5 space-y-8">
             <div className="p-8 rounded-3xl bg-white dark:bg-[#102C23] border border-[#102C23]/10 dark:border-[#C9A44C]/25 space-y-6 shadow-md">
-              <div className="space-y-1">
-                <span className="text-xs font-semibold uppercase tracking-wider text-[#C9A44C]">
-                  Direct Channels
-                </span>
-                <h3 className="font-display text-2xl font-bold text-[#17251C] dark:text-[#F8FAF7]">
-                  Talk Directly With Umair
-                </h3>
-                <p className="text-xs sm:text-sm text-[#17251C]/70 dark:text-[#F8FAF7]/70">
-                  No intermediaries or sales reps. You communicate directly with the lead engineer responsible for your project.
-                </p>
+              <div className="flex items-start gap-4">
+                <img
+                  src="/assets/aistudio/Screenshot_20261012_132526_fbe3eb2c.jpg"
+                  alt="Umair Web Designer"
+                  referrerPolicy="no-referrer"
+                  className="w-14 h-14 rounded-2xl object-cover object-top border-2 border-[#C9A44C]/40 shrink-0 shadow-sm"
+                />
+                <div className="space-y-1">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-[#C9A44C]">
+                    Direct Channels
+                  </span>
+                  <h3 className="font-display text-2xl font-bold text-[#17251C] dark:text-[#F8FAF7]">
+                    Talk Directly With Umair
+                  </h3>
+                  <p className="text-xs sm:text-sm text-[#17251C]/70 dark:text-[#F8FAF7]/70">
+                    No intermediaries or sales reps. You communicate directly with {brandConfig.ownerName}, lead engineer responsible for your project.
+                  </p>
+                </div>
               </div>
 
               {/* Direct WhatsApp Card */}

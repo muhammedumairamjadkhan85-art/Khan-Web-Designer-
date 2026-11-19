@@ -77,10 +77,10 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
             <span>Decent Web Engineering</span>
           </div>
           <h1 className="font-display text-4xl sm:text-5xl font-extrabold text-[#17251C] dark:text-[#F8FAF7] leading-tight">
-            ENGINEERED FOR <span className="text-[#102C23] dark:text-[#E3C477]">COMMERCIAL IMPACT.</span>
+            CUSTOM WEB DEVELOPMENT &amp; <span className="text-[#102C23] dark:text-[#E3C477]">SEO SERVICES.</span>
           </h1>
           <p className="text-base sm:text-lg text-[#17251C]/80 dark:text-[#F8FAF7]/80 leading-relaxed">
-            From high-conversion landing funnels to comprehensive enterprise applications, each service is delivered with obsessive attention to design aesthetics, performance benchmarks, and measurable ROI.
+            From responsive business website design and high-converting landing pages to full-featured e-commerce stores, UI/UX design, website redesigns, and technical SEO optimization built for rapid Google visibility.
           </p>
         </div>
       </section>

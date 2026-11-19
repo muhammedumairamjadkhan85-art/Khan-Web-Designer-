@@ -1,63 +1,65 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense, lazy } from 'react';
 import { PageId, ProjectItem, BrandConfig } from './types';
-import { initialBrandConfig, getStoredBrandConfig, saveBrandConfig } from './data/brandConfig';
+import { getStoredBrandConfig, saveBrandConfig } from './data/brandConfig';
+import { PAGE_PATHS, getPageFromPath, applyClientSeo } from './data/seoConfig';
 import { ThemeProvider } from './context/ThemeContext';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
 import { ProjectModal } from './components/ProjectModal';
 import { ConfigModal } from './components/ConfigModal';
 
-// All 13 Separate Pages
+// Eager load HomePage for fastest Core Web Vitals (LCP/FCP)
 import { HomePage } from './pages/HomePage';
-import { AboutPage } from './pages/AboutPage';
-import { ServicesPage } from './pages/ServicesPage';
-import { PortfolioPage } from './pages/PortfolioPage';
-import { ProjectsPage } from './pages/ProjectsPage';
-import { SkillsPage } from './pages/SkillsPage';
-import { TestimonialsPage } from './pages/TestimonialsPage';
-import { PricingPage } from './pages/PricingPage';
-import { BlogPage } from './pages/BlogPage';
-import { FaqPage } from './pages/FaqPage';
-import { ContactPage } from './pages/ContactPage';
-import { PrivacyPolicyPage } from './pages/PrivacyPolicyPage';
-import { TermsPage } from './pages/TermsPage';
+
+// Lazy load secondary pages for optimal bundle splitting and fast ranking
+const AboutPage = lazy(() => import('./pages/AboutPage').then((m) => ({ default: m.AboutPage })));
+const ServicesPage = lazy(() => import('./pages/ServicesPage').then((m) => ({ default: m.ServicesPage })));
+const PortfolioPage = lazy(() => import('./pages/PortfolioPage').then((m) => ({ default: m.PortfolioPage })));
+const ProjectsPage = lazy(() => import('./pages/ProjectsPage').then((m) => ({ default: m.ProjectsPage })));
+const SkillsPage = lazy(() => import('./pages/SkillsPage').then((m) => ({ default: m.SkillsPage })));
+const TestimonialsPage = lazy(() => import('./pages/TestimonialsPage').then((m) => ({ default: m.TestimonialsPage })));
+const PricingPage = lazy(() => import('./pages/PricingPage').then((m) => ({ default: m.PricingPage })));
+const BlogPage = lazy(() => import('./pages/BlogPage').then((m) => ({ default: m.BlogPage })));
+const FaqPage = lazy(() => import('./pages/FaqPage').then((m) => ({ default: m.FaqPage })));
+const ContactPage = lazy(() => import('./pages/ContactPage').then((m) => ({ default: m.ContactPage })));
+const PrivacyPolicyPage = lazy(() => import('./pages/PrivacyPolicyPage').then((m) => ({ default: m.PrivacyPolicyPage })));
+const TermsPage = lazy(() => import('./pages/TermsPage').then((m) => ({ default: m.TermsPage })));
 
 export function AppContent() {
-  const [currentPage, setCurrentPage] = useState<PageId>('home');
+  const [currentPage, setCurrentPage] = useState<PageId>(() =>
+    typeof window !== 'undefined' ? getPageFromPath(window.location.pathname) : 'home'
+  );
   const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null);
   const [isConfigOpen, setIsConfigOpen] = useState(false);
   const [brandConfig, setBrandConfig] = useState<BrandConfig>(getStoredBrandConfig());
   const [preSelectedService, setPreSelectedService] = useState<string | undefined>(undefined);
 
-  // Sync title and metadata with brand & current page
+  // Listen to browser back/forward navigation
   useEffect(() => {
-    const titles: Record<PageId, string> = {
-      home: `${brandConfig.brandName} | We Build Your Digital Future`,
-      about: `About Us | ${brandConfig.ownerName} - ${brandConfig.brandName}`,
-      services: `Web Engineering Services | ${brandConfig.brandName}`,
-      portfolio: `Digital Portfolio & Specimens | ${brandConfig.brandName}`,
-      projects: `Case Studies & Projects | ${brandConfig.brandName}`,
-      skills: `Our Skills & Tech Stack | ${brandConfig.brandName}`,
-      testimonials: `Testimonials & Client Feedback | ${brandConfig.brandName}`,
-      pricing: `Transparent Pricing & Cost Calculator | ${brandConfig.brandName}`,
-      blog: `Blog & Technical Insights | ${brandConfig.brandName}`,
-      faq: `Frequently Asked Questions | ${brandConfig.brandName}`,
-      contact: `Contact Us & Project Inquiry | ${brandConfig.brandName}`,
-      privacy: `Privacy Policy | ${brandConfig.brandName}`,
-      terms: `Terms & Conditions | ${brandConfig.brandName}`,
+    const handlePopState = () => {
+      setCurrentPage(getPageFromPath(window.location.pathname));
     };
-    document.title = titles[currentPage] || `${brandConfig.brandName} | We Build Your Digital Future`;
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
+
+  // Sync dynamic SEO meta tags, canonical URL, OpenGraph & Schema.org JSON-LD per route
+  useEffect(() => {
+    applyClientSeo(currentPage, brandConfig.brandName);
   }, [currentPage, brandConfig]);
 
   const handleNavigate = (page: PageId) => {
     setCurrentPage(page);
+    const targetPath = PAGE_PATHS[page] || '/';
+    if (typeof window !== 'undefined' && window.location.pathname !== targetPath) {
+      window.history.pushState({ page }, '', targetPath);
+    }
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleSelectServiceAndContact = (serviceTitle: string) => {
     setPreSelectedService(serviceTitle);
-    setCurrentPage('contact');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    handleNavigate('contact');
   };
 
   const handleSaveBrandConfig = (newConfig: BrandConfig) => {
@@ -76,106 +78,114 @@ export function AppContent() {
 
       {/* Main Content Area: 13 Distinct Separate Pages */}
       <main className="flex-1">
-        {currentPage === 'home' && (
-          <HomePage
-            onNavigate={handleNavigate}
-            onSelectProject={setSelectedProject}
-            onSelectServiceAndContact={handleSelectServiceAndContact}
-            brandConfig={brandConfig}
-          />
-        )}
+        <Suspense
+          fallback={
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 text-center">
+              <div className="inline-block w-8 h-8 border-2 border-[#C9A44C] border-t-transparent rounded-full animate-spin" />
+            </div>
+          }
+        >
+          {currentPage === 'home' && (
+            <HomePage
+              onNavigate={handleNavigate}
+              onSelectProject={setSelectedProject}
+              onSelectServiceAndContact={handleSelectServiceAndContact}
+              brandConfig={brandConfig}
+            />
+          )}
 
-        {currentPage === 'about' && (
-          <AboutPage
-            onNavigate={handleNavigate}
-            brandConfig={brandConfig}
-          />
-        )}
+          {currentPage === 'about' && (
+            <AboutPage
+              onNavigate={handleNavigate}
+              brandConfig={brandConfig}
+            />
+          )}
 
-        {currentPage === 'services' && (
-          <ServicesPage
-            onNavigate={handleNavigate}
-            onSelectServiceAndContact={handleSelectServiceAndContact}
-            brandConfig={brandConfig}
-          />
-        )}
+          {currentPage === 'services' && (
+            <ServicesPage
+              onNavigate={handleNavigate}
+              onSelectServiceAndContact={handleSelectServiceAndContact}
+              brandConfig={brandConfig}
+            />
+          )}
 
-        {currentPage === 'portfolio' && (
-          <PortfolioPage
-            onNavigate={handleNavigate}
-            onSelectProject={setSelectedProject}
-            onSelectServiceAndContact={handleSelectServiceAndContact}
-            brandConfig={brandConfig}
-          />
-        )}
+          {currentPage === 'portfolio' && (
+            <PortfolioPage
+              onNavigate={handleNavigate}
+              onSelectProject={setSelectedProject}
+              onSelectServiceAndContact={handleSelectServiceAndContact}
+              brandConfig={brandConfig}
+            />
+          )}
 
-        {currentPage === 'projects' && (
-          <ProjectsPage
-            onNavigate={handleNavigate}
-            onSelectProject={setSelectedProject}
-            onSelectServiceAndContact={handleSelectServiceAndContact}
-            brandConfig={brandConfig}
-          />
-        )}
+          {currentPage === 'projects' && (
+            <ProjectsPage
+              onNavigate={handleNavigate}
+              onSelectProject={setSelectedProject}
+              onSelectServiceAndContact={handleSelectServiceAndContact}
+              brandConfig={brandConfig}
+            />
+          )}
 
-        {currentPage === 'skills' && (
-          <SkillsPage
-            onNavigate={handleNavigate}
-            brandConfig={brandConfig}
-          />
-        )}
+          {currentPage === 'skills' && (
+            <SkillsPage
+              onNavigate={handleNavigate}
+              brandConfig={brandConfig}
+            />
+          )}
 
-        {currentPage === 'testimonials' && (
-          <TestimonialsPage
-            onNavigate={handleNavigate}
-            brandConfig={brandConfig}
-          />
-        )}
+          {currentPage === 'testimonials' && (
+            <TestimonialsPage
+              onNavigate={handleNavigate}
+              brandConfig={brandConfig}
+            />
+          )}
 
-        {currentPage === 'pricing' && (
-          <PricingPage
-            onNavigate={handleNavigate}
-            onSelectServiceAndContact={handleSelectServiceAndContact}
-            brandConfig={brandConfig}
-          />
-        )}
+          {currentPage === 'pricing' && (
+            <PricingPage
+              onNavigate={handleNavigate}
+              onSelectServiceAndContact={handleSelectServiceAndContact}
+              brandConfig={brandConfig}
+            />
+          )}
 
-        {currentPage === 'blog' && (
-          <BlogPage
-            onNavigate={handleNavigate}
-            brandConfig={brandConfig}
-          />
-        )}
+          {currentPage === 'blog' && (
+            <BlogPage
+              onNavigate={handleNavigate}
+              brandConfig={brandConfig}
+            />
+          )}
 
-        {currentPage === 'faq' && (
-          <FaqPage
-            onNavigate={handleNavigate}
-            brandConfig={brandConfig}
-          />
-        )}
+          {currentPage === 'faq' && (
+            <FaqPage
+              onNavigate={handleNavigate}
+              brandConfig={brandConfig}
+            />
+          )}
 
-        {currentPage === 'contact' && (
-          <ContactPage
-            onNavigate={handleNavigate}
-            brandConfig={brandConfig}
-            preSelectedService={preSelectedService}
-            onOpenConfig={() => setIsConfigOpen(true)}
-          />
-        )}
+          {currentPage === 'contact' && (
+            <ContactPage
+              onNavigate={handleNavigate}
+              brandConfig={brandConfig}
+              preSelectedService={preSelectedService}
+              onOpenConfig={() => setIsConfigOpen(true)}
+            />
+          )}
 
-        {currentPage === 'privacy' && (
-          <PrivacyPolicyPage
-            onNavigate={handleNavigate}
-            brandConfig={brandConfig}
-          />
-        )}
+          {currentPage === 'privacy' && (
+            <PrivacyPolicyPage
+              onNavigate={handleNavigate}
+              brandConfig={brandConfig}
+            />
+          )}
 
-        {currentPage === 'terms' && (
-          <TermsPage
-            onNavigate={handleNavigate}
-            brandConfig={brandConfig}
-          />
-        )}
+          {currentPage === 'terms' && (
+            <TermsPage
+              onNavigate={handleNavigate}
+              brandConfig={brandConfig}
+            />
+          )}
+        </Suspense>
       </main>
 
       {/* Footer */}
